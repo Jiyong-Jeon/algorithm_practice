@@ -18,33 +18,33 @@ def dfs(temp_total, picks, minerals):
         return
     
     if picks[0] != 0:
-        mineral = minerals.popleft()
-        picks[0] -= 1
+        temp_minerals = copy.deepcopy(minerals)
+        mineral = temp_minerals.popleft()
+        temp_picks = copy.deepcopy(picks)
+        temp_picks[0] -= 1
         pred = predict(2, mineral)
         if temp_total + pred < total:
-            dfs(temp_total + pred, copy.deepcopy(picks), copy.deepcopy(minerals))
-            minerals.appendleft(mineral)
-            picks[0] += 1
+            dfs(temp_total + pred, temp_picks, temp_minerals)
         else:
             return
     if picks[1] != 0:
-        mineral = minerals.popleft()
-        picks[1] -= 1
+        temp_minerals = copy.deepcopy(minerals)
+        mineral = temp_minerals.popleft()
+        temp_picks = copy.deepcopy(picks)
+        temp_picks[1] -= 1
         pred = predict(1, mineral)
         if temp_total + pred < total:
-            dfs(temp_total + pred, copy.deepcopy(picks), copy.deepcopy(minerals))
-            minerals.appendleft(mineral)
-            picks[1] += 1
+            dfs(temp_total + pred, temp_picks, temp_minerals)
         else:
             return
     if picks[2] != 0:
-        mineral = minerals.popleft()
-        picks[2] -= 1
+        temp_minerals = copy.deepcopy(minerals)
+        mineral = temp_minerals.popleft()
+        temp_picks = copy.deepcopy(picks)
+        temp_picks[2] -= 1
         pred = predict(0, mineral)
         if temp_total + pred < total:
-            dfs(temp_total + pred, copy.deepcopy(picks), copy.deepcopy(minerals))
-            minerals.appendleft(mineral)
-            picks[2] += 1
+            dfs(temp_total + pred, temp_picks, temp_minerals)
         else:
             return
     
